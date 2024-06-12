@@ -11,7 +11,7 @@ mcd(){
 	cd "$1"
 }
 
-extract () {
+extract() {
         if [ -f $1 ] ; then
           case $1 in
             *.tar.bz2)   tar xjf $1     ;;
@@ -30,4 +30,20 @@ extract () {
          else
              echo "'$1' is not a valid file"
          fi
-    }
+  }
+
+# navigation
+alias ..="cd ../"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ls="ls -l"
+
+# git
+alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+# Start ssh agent
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval "$(ssh-agent -s)" &>/dev/null
+  # add private keys
+  ssh-add ~/.ssh/github &>/dev/null
+fi
