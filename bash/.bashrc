@@ -1,3 +1,5 @@
+# executes on every new window
+
 orange=$(tput setaf 166);
 bold=$(tput bold);
 reset=$(tput sgr0);
@@ -43,7 +45,7 @@ alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Cres
 
 # Start ssh agent
 if [ -z "$SSH_AUTH_SOCK" ]; then
-  eval "$(ssh-agent -s)" &>/dev/null
+  eval "$(ssh-agent -s)" >/dev/null
   # add private keys
-  ssh-add ~/.ssh/github &>/dev/null
+  ssh-add ~/.ssh/github >/dev/null
 fi
