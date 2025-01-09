@@ -8,11 +8,15 @@ PS1="${orange}\w\n";
 PS1+="${bold}\W > ";
 PS1+="${reset}";
 
+# os
+alias ..="cd ../"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias ls="ls -l"
 mcd(){
 	mkdir -p "$1"
 	cd "$1"
 }
-
 extract() {
         if [ -f $1 ] ; then
           case $1 in
@@ -34,18 +38,26 @@ extract() {
          fi
   }
 
-# navigation
-alias ..="cd ../"
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias ls="ls -l"
-
 # git
 alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
-# Start ssh agent
+# start ssh agent
 if [ -z "$SSH_AUTH_SOCK" ]; then
   eval "$(ssh-agent -s)" >/dev/null
   # add private keys
   ssh-add ~/.ssh/github >/dev/null
 fi
+
+# docker
+alias dcbuild='docker-compose build'
+alias dcup='docker-compose up'
+alias dcdown='docker-compose down'
+alias dockps='docker ps --format "{{.ID}}  {{.Names}}" | sort -k 2'
+docksh() { docker exec -it $1 /bin/bash; }
+
+# conda
+export PATH="$HOME/miniconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/Scripts:$PATH"
+
+__conda_setup="$('C:/Users/Vialo/anaconda3/Scripts/conda.exe' 'shell.bash' 'hook' 2> /dev/null)"
+eval "$__conda_setup"
