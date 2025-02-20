@@ -4,9 +4,9 @@ orange=$(tput setaf 166);
 bold=$(tput bold);
 reset=$(tput sgr0);
 
-PS1="${orange}\w\n";
-PS1+="${bold}\W > ";
-PS1+="${reset}";
+PS1="\[${orange}\]\w\n"
+PS1+="\[${bold}\]\W > "
+PS1+="\[${reset}\]"
 
 # os
 alias ..="cd ../"
