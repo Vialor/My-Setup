@@ -13,10 +13,16 @@ alias ..="cd ../"
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ls="ls -l"
-mcd(){
+
+regfind() {
+  find $1 -regextype posix-extended -regex $2
+}
+
+mcd() {
 	mkdir -p "$1"
 	cd "$1"
 }
+
 extract() {
         if [ -f $1 ] ; then
           case $1 in
