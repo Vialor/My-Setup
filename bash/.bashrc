@@ -23,6 +23,34 @@ mcd() {
 	cd "$1"
 }
 
+open() {
+  local path="$1"
+  if [ -z "$path" ]; then
+    path="."
+  fi
+  case "$OSTYPE" in
+    msys*|cygwin*) # Windows (Git Bash/Cygwin)
+      if [[ "$1" == /* ]]; then # absolute path
+        drive_letter=$(echo "$1" | cut -d'/' -f2 | tr 'a-z' 'A-Z')
+        win_path="${drive_letter}:\\$(echo "$1" | cut -d'/' -f3- | tr '/' '\\')"
+      else # relative path
+        win_path="$(cygpath -w "$(realpath "$1")")"
+      fi
+      explorer /select,"$win_path" # highlight the file in Explorer, not execute it
+      ;;
+    linux-gnu*) # Linux
+      xdg-open "$path"
+      ;;
+    darwin*) # macOS
+      open "$path"
+      ;;
+    *)
+      echo "Unsupported OS: $OSTYPE"
+      return 1
+      ;;
+  esac
+}
+
 extract() {
         if [ -f $1 ] ; then
           case $1 in
