@@ -1,0 +1,13 @@
+# ~/.gitconfig
+[user]
+	name = Vialor
+	email = vial0520@gmail.com
+[gui]
+	encoding = utf-8 # Git图形界面使用utf-8
+[i18n]
+	commitencoding = utf-8 # commit encoding
+	logoutputencoding = utf-8 # checkout encoding
+[core]
+	quotepath = false # 避免非ASCII字符在路径中乱码
+[credential]
+	helper = store # 口令缓存
